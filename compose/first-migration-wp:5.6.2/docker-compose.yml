@@ -1,17 +1,15 @@
-#version: '3.8'
-
 services:
   db:
     image: mysql:5.7
-    container_name: wp_old_db
+    container_name: wp_mysql_57
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: root_password
       MYSQL_DATABASE: wordpress_db
       MYSQL_USER: wp_user
       MYSQL_PASSWORD: wp_password
-
+      MYSQL_ROOT_PASSWORD: secure_root_password
     volumes:
+      # Automatically imports your original database dump if the volume is new
       - ../../db-dump:/docker-entrypoint-initdb.d
       - db_data:/var/lib/mysql
     # Healthcheck tells Docker how to test if MySQL is genuinely ready, not just running
@@ -19,28 +17,27 @@ services:
       test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "wp_user", "-pwp_password"]
       timeout: 5s
       retries: 5
-      interval: 5s
-
-  wordpress:
-    image: wordpress:5.2.0-php7.3-apache
-    #image: webdevops/php-apache:ubuntu-14.04
-    container_name: wp_old_site
-    restart: always
+      interval: 5s      
     ports:
-      - "8080:80"
+      - "3306:3306"
+
+  web:
+    image: wordpress:5.6.2-php7.4-apache
+    container_name: wp_upgrade_562
+    restart: always
+    depends_on:
+      - db
     environment:
-      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_NAME: wordpress_db
       WORDPRESS_DB_USER: wp_user
       WORDPRESS_DB_PASSWORD: wp_password
-      WORDPRESS_DB_NAME: wordpress_db
-
     volumes:
+      # Mounts your local WordPress source code directory directly into the container
+      - ./html:/var/www/html
       - ../../wordpress-files:/var/www/html
-
-    # This prevents WordPress from starting until the DB healthcheck passes
-    depends_on:
-      db:
-        condition: service_healthy
+    ports:
+      - "80:80"
 
 volumes:
   db_data:

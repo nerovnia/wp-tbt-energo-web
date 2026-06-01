@@ -22,5 +22,5 @@ RUN sed -i '/<Directory "\/var\/www\/html">/,/<\/Directory>/ s/AllowOverride Non
 RUN echo "ServerName localhost" >> /etc/httpd/conf/httpd.conf
 
 EXPOSE 80
-#RUN echo -e "php_flag display_errors on\nphp_value error_reporting 32767" >> /etc/httpd/conf/httpd.conf
+# RUN echo -e "php_flag display_errors on\nphp_value error_reporting 32767" >> /etc/httpd/conf/httpd.conf
 CMD ["/usr/sbin/httpd", "-D", "FOREGROUND"]
