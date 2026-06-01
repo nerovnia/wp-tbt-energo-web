@@ -1,0 +1,41 @@
+services:
+  db:
+    image: mysql:5.7
+    container_name: wp_mysql_57
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_DATABASE: wordpress_db
+      MYSQL_USER: wp_user
+      MYSQL_PASSWORD: wp_password
+    volumes:
+      - ../../db-dump:/docker-entrypoint-initdb.d
+      - db_data:/var/lib/mysql
+    # Healthcheck tells Docker how to test if MySQL is genuinely ready, not just running
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "wp_user", "-pwp_password"]
+      timeout: 5s
+      retries: 5
+      interval: 5s
+
+
+    ports:
+      - "3306:3306"
+
+  wordpress:
+    #image: sergeydg7/php5.4-apache
+    build:
+        context: .
+        dockerfile: Dockerfile
+    container_name: wp_old_site
+    #container_name: wp_apache_php54
+    restart: always
+    depends_on:
+      - db
+    volumes:
+      - ../../wordpress-files:/var/www/html
+    ports:
+      - "80:80"
+
+volumes:
+  db_data:
