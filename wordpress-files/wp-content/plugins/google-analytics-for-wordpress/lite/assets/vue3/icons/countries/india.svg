@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+	<defs><clipPath id="in"><circle cx="10" cy="10" r="10"/></clipPath></defs>
+	<g clip-path="url(#in)">
+		<rect width="20" height="6.67" fill="#FF9933"/>
+		<rect y="6.67" width="20" height="6.66" fill="#FFF"/>
+		<rect y="13.33" width="20" height="6.67" fill="#138808"/>
+		<circle cx="10" cy="10" r="2" fill="none" stroke="#000080" stroke-width="0.5"/>
+	</g>
+</svg>
