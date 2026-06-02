@@ -83,4 +83,28 @@ add_filter('excerpt_length', 'new_excerpt_length');
 add_filter('excerpt_more', function($more) {
 	return '...';
 });
+
+// Add Volodymyr Nerovnia 01.06.2026
+function tbt_register_native_gallery() {
+    $args = array(
+        'public'             => true,
+        'publicly_queryable' => true,
+        'show_ui'            => true,
+        'show_in_menu'       => true,
+        'query_var'          => true,
+        'capability_type'    => 'post',
+        'has_archive'        => true,
+        'hierarchical'       => false,
+        'menu_position'      => 5,
+        'menu_icon'          => 'dashicons-portfolio', // Nice portfolio briefcase icon
+        'label'              => 'Галерея робіт',
+        'supports'           => array( 'title', 'editor', 'thumbnail', 'excerpt', 'custom-fields' ),
+        'show_in_rest'       => true, // Enables the modern Block/Gutenberg editor
+    );
+
+    // REPLACE 'your_found_slug' WITH THE EXACT NAME FROM STEP 1
+    register_post_type( 'object', $args );
+}
+add_action( 'init', 'tbt_register_native_gallery' );
+
 ?>
