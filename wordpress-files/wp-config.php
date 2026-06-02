@@ -1,9 +1,16 @@
 <?php
 
+/*
+if (file_exists(__DIR__ . '/wp-config-hosting.php')) {
+    include __DIR__ . '/wp-config-hosting.php';
+}
+*/
 
 if (file_exists(__DIR__ . '/wp-config-local.php')) {
     include __DIR__ . '/wp-config-local.php';
 }
+
+
 
 /**#@-*/
 

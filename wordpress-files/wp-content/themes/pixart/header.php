@@ -8,7 +8,7 @@
 <meta property="og:site_name" content=" Тут нейм">
 <meta property="og:description" content="Виробництво та збирання електрощитового обладнання за індивідуальними і типовими схемами, з гарантією кращої ціни">
 <meta property="og:image" content="https://ekfgroup.com/uploads/reshenia/energetika.jpg">
-	<meta property="og:url" content="http://tbt-energo.com/">
+	<meta property="og:url" content="https://tbt-energo.com/">
 
 	<title><?php bloginfo('name'); ?> <?php wp_title('|',true,''); ?></title>
 
@@ -18,7 +18,7 @@
 	<link rel="stylesheet" href="<?php bloginfo('template_url'); ?>/css/owl.carousel.css" media="all" />
 	<link rel="stylesheet" type="text/css" href="<?php bloginfo('template_url'); ?>/css/jquery.fancybox.css?v=2.1.5" media="screen"/>
 
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.1/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.1/jquery.min.js"></script>
 	<script src="<?php bloginfo('template_url'); ?>/js/owl.carousel.js"></script>
 	<script type="text/javascript" src="<?php bloginfo('template_url'); ?>/js/jquery.fancybox.js?v=2.1.5"></script>
 
